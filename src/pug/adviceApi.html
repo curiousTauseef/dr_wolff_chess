@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
+
+    <title>GOLICO - Booststrap Theme for testing social media APIs </title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/stanley_bootstrap.css" rel="stylesheet">
+
+
+    <!-- Custom styles for this template -->
+    <link href="css/stanley_main.css" rel="stylesheet">
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+	<!--<script src="assets/js/quoteEzioda.js"></script> -->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+
+
+	  <!-- use advice from https://developers.facebook.com/docs/javascript/quickstart -->
+	  <!--script async defer src="https://connect.facebook.net/en_US/sdk.js"></script> -->
+  </head>
+
+  <body>
+
+
+	<!-- Use hint from answer at https://stackoverflow.com/questions/13580396/how-to-login-using-facebook-account -->
+	<!-- Use hint from answer at https://developers.facebook.com/docs/facebook-login/web -->
+      <script>
+        // This is called with the results from from FB.getLoginStatus().
+        function statusChangeCallback(response) {
+  		console.log('statusChangeCallback');
+  
+          console.log(response);
+          // The response object is returned with a status field that lets the
+          // app know the current login status of the person.
+          // Full docs on the response object can be found in the documentation
+          // for FB.getLoginStatus().
+          if (response.status === 'connected') {
+            // Logged into your app and Facebook.
+            console.log(response.status);
+  		  console.log('The person is logged into Facebook, and has logged into your webpage.');
+            testAPI();
+          } else if (response.status === 'not_authorized') {
+            // The person is logged into Facebook, but not your app.
+            console.log("The person is logged into Facebook, but not your app.");
+            console.log(response.status);
+          } else {
+            // The person is not logged into Facebook, so we're not sure if
+            // they are logged into this app or not.
+            console.log(response.status);
+            document.getElementById('status').innerHTML = 'Please log ' + 'into this webpage.';
+  
+          }
+        }
+
+        // This function is called when someone finishes with the Login
+        // Button.  See the onlogin handler attached to it in the sample
+        // code below.
+        function checkLoginState() {
+            console.log("btn press, call fn to check state");
+            FB.getLoginStatus(function(response) {
+            statusChangeCallback(response);
+          });
+        }
+
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId: '462799731072385',
+            cookie: true, // enable cookies to allow the server to access 
+            // the session
+            xfbml: true, // parse social plugins on this page
+            version: 'v5.0' // use version 2.2
+          });
+  
+          // Now that we've initialized the JavaScript SDK, we call 
+          // FB.getLoginStatus().  This function gets the state of the
+          // person visiting this page and can return one of three states to
+          // the callback you provide.  They can be:
+          //
+          // 1. Logged into your app ('connected')
+          // 2. Logged into Facebook, but not your app ('not_authorized')
+          // 3. Not logged into Facebook and can't tell if they are logged into
+          //    your app or not.
+          //
+          // These three cases are handled in the callback function.
+  
+          FB.getLoginStatus(function(response) {
+            statusChangeCallback(response);
+            console.log("Async Init response begin");
+            console.log(response);
+  
+  		      if (response.authResponse) {
+       				console.log('Welcome!  Fetching your information.... ');
+       				FB.api('/me', function(response) {
+         					console.log('Good to see you, ' + response.name + '.');
+       				});
+      			} else {
+       				console.log('User cancelled login or did not fully authorize.');
+      			}
+  
+            console.log("Async Init response end");
+          });
+  
+        };
+
+
+        (function(d, s, id) {                      // Load the SDK asynchronously
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "https://connect.facebook.net/en_US/sdk.js";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+
+
+        // Here we run a very simple test of the Graph API after login is
+        // successful.  See statusChangeCallback() for when this call is made.
+        function testAPI() {
+          console.log('Welcome!  Fetching your information.... ');
+          FB.api('/me', function(response) {
+            console.log("Fb response");
+            console.log(response);
+            console.log('Successful login for: ' + response.name);
+            document.getElementById('status').innerHTML =
+              'Thanks for logging in, ' + response.name + '!';
+          });
+        }
+      </script>
+
+
+
+    <!-- Static navbar -->
+    <div class="navbar navbar-inverse navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">GOLICO</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="work.html">Work</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+	
+	
+	<!-- +++++ Projects Section +++++ -->
+ <div class="container">
+  <h1>Hello World!</h1>
+  <div class="row">
+    <div class="col-sm-6" style="background-color:yellow;">
+     
+    <div class="panel panel-default">
+      <div class="panel-heading">Let's first do simple login to Facebook !</div>
+      <div class="panel-body">
+				<p>SOF suggestion to display a FB login</p>
+
+
+				<fb:login-button scope="public_profile,email" data-scope="user_likes" data-max-rows="1" data-size="medium" onlogin="checkLoginState();">
+				</fb:login-button>
+
+				<div id="status">
+				</div>
+		  
+				<!-- Panel Content ends -->
+	  </div>
+    </div>
+
+
+
+	</div> <!-- col 1 end-->
+    <div class="col-sm-6" style="background-color:pink;">
+				<!-- Now show the profile pic in Col 2 -->
+
+								<p>Display profile picture</p>
+				<button onClick="go()">Go</button>
+                                <div id="output"></div>
+
+
+			<script type="text/javascript">
+                          function go() {
+                          //const fileInput = document.getElementById('file');
+                          //const outputDiv = document.getElementById('output');
+
+                          FB.api('/me?fields=name,picture', function(response) {
+                      	  console.log("Fb response for pic");
+                            console.log(response);
+                            document.getElementById('output').innerHTML = ('<img src="' + response.picture.data.url + '"> ' + response.name);
+                          });
+
+                          //let html = '';
+                          //html += '<img src="images/' + file.name + '" />';
+                          //outputDiv.textContent = html;
+                        }
+			</script>
+
+
+    </div><!-- col 2 end-->
+
+	    <div class="col-sm-6" style="background-color:yellow;">
+     
+          <div class="panel panel-default">
+            <div class="panel-heading">Let's try to get simple details about you -  birthday and email information. </div>
+            <div class="panel-body">
+
+		  				<p>Display birthday and email of logged in user</p>
+				<div id="beResp" class="btn btn-success" style="padding-top: 20px">Click here to show bday and email info</div>
+                                <div id="biInfo"></div>
+                                <div id="emInfo"></div>
+
+
+<script>
+document.getElementById('beResp').onclick = function() {
+
+	<!-- Earlier I used Tauseef FB ID 2844230095628128 now using me   -->
+  FB.api('/me?fields=id,name,birthday,email', function(response) {
+    //Log.info('API response', response);
+
+                            console.log(response);
+                            document.getElementById('biInfo').innerHTML = response.birthday;
+                            document.getElementById('emInfo').innerHTML = response.email;
+  });
+}
+</script>
+
+				<!-- Panel Content ends -->
+	        </div>
+          </div>
+
+
+
+	</div> <!-- col 3 end-->
+  </div> <!-- End row div element here -->
+ </div> <!--End container div element here -->	
+	
+	<!-- +++++ Footer Section +++++ -->
+	
+	<div id="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4">
+					<h4>My Bunker</h4>
+					<p>
+						Some Address 987,<br/>
+						+34 9054 5455, <br/>
+						Madrid, Spain.
+					</p>
+				</div><!-- /col-lg-4 -->
+				
+				<div class="col-lg-4">
+					<h4>My Links</h4>
+					<p>
+						<a href="#">Dribbble</a><br/>
+						<a href="#">Twitter</a><br/>
+						<a href="#">Facebook</a>
+					</p>
+				</div><!-- /col-lg-4 -->
+				
+				<div class="col-lg-4">
+					<h4>About Stanley</h4>
+					<p>This cute theme was created to showcase your work in a simple way. Use it wisely.</p>
+				</div><!-- /col-lg-4 -->
+			
+			</div>
+		
+		</div>
+	</div>
+	
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/stanley_bootstrap.min.js"></script>
+  </body>
+</html>
