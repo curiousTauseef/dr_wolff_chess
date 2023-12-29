@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Lets play Chess</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
+    <link href="https://c2a.chesstempo.com/pgnviewer/v2.5/pgnviewerext.vers1.css" media="all" rel="stylesheet" crossorigin="" />
+    <script defer="" language="javascript" src="https://c1a.chesstempo.com/pgnviewer/v2.5/pgnviewerext.bundle.vers1.js" crossorigin=""></script>
+    <link href="https://c1a.chesstempo.com/fonts/MaterialIcons-Regular.woff2" rel="stylesheet" type="font/woff2" crossorigin="" />
+    <link href="carousel.css" rel="stylesheet" />
+</head>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<style>
+    .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+    }
+    @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+        }
+    }
+    .b-example-divider {
+        width: 100%;
+        height: 3rem;
+        background-color: rgba(0, 0, 0, 0.1);
+        border: solid rgba(0, 0, 0, 0.15);
+        border-width: 1px 0;
+        box-shadow: inset 0 0.5em 1.5em rgba(0, 0, 0, 0.1), inset 0 0.125em 0.5em rgba(0, 0, 0, 0.15);
+    }
+    .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+    }
+    .bi {
+        vertical-align: -0.125em;
+        fill: currentColor;
+    }
+    .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+    }
+    .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+    .btn-bd-primary {
+        --bd-violet-bg: #712cf9;
+        --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+        --bs-btn-font-weight: 600;
+        --bs-btn-color: var(--bs-white);
+        --bs-btn-bg: var(--bd-violet-bg);
+        --bs-btn-border-color: var(--bd-violet-bg);
+        --bs-btn-hover-color: var(--bs-white);
+        --bs-btn-hover-bg: #6528e0;
+        --bs-btn-hover-border-color: #6528e0;
+        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+        --bs-btn-active-color: var(--bs-btn-hover-color);
+        --bs-btn-active-bg: #5a23c8;
+        --bs-btn-active-border-color: #5a23c8;
+    }
+    .bd-mode-toggle {
+        z-index: 1500;
+    }
+    .bd-mode-toggle .dropdown-menu .active .bi {
+        display: block !important;
+    }
+</style>
+<div class="d-flex" id="wrapper">
+    <!-- Sidebar-->
+    <div class="border-end bg-white" id="sidebar-wrapper">
+        <div class="sidebar-heading border-bottom bg-light">Chess fun !</div>
+        <div class="list-group list-group-flush">
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="chessManyQueensWin.html">Many Queens Win</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="strategicWins.html">Strategic wins</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="greatOverwhelmingWins.html">Great Overwhelming wins</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Events</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Profile</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Status</a>
+        </div>
+    </div>
+    <!-- Page content wrapper-->
+    <div id="page-content-wrapper">
+        <!-- Top navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+            <div class="container-fluid">
+                <button class="btn btn-primary" id="sidebarToggle">Toggle Menu</button>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                        <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!">Link</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#!">Action</a>
+                                <a class="dropdown-item" href="#!">Another action</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#!">Something else here</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <style>
+            /* Carousel styling */
+            #myCarousel,
+            .carousel-inner,
+            .carousel-item,
+            .carousel-item.active {
+                height: 100vh;
+            }
+            .carousel-item:nth-child(1) {
+                background-image: url('./img/farm/bg/intro_bg_1.jpg');
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center center;
+            }
+            .carousel-item:nth-child(2) {
+                background-image: url('./img/farm/bg/pond_view_1.jpg');
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center center;
+            }
+            .carousel-item:nth-child(3) {
+                background-image: url('./img/farm/bg/hut_view_1.jpg');
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center center;
+            }
+            /* Height for devices larger than 576px */
+            @media (min-width: 992px) {
+                #introCarousel {
+                    margin-top: -58.59px;
+                }
+            }
+        </style>
+        <!-- Page content-->
+        <div class="container-fluid">
+            <h1 class="mt-4">Games won in style with decimation of other side</h1>
+            <p>How I used different approach on left vs right side</p>
+            <p>PGN replay created with https://chesstempo.com/manual/en/manual.html#pgnviewerexternalusage</p>
+            <h2>Sacrifice the queen, use rook wisely on left side, both knights on right to both defend and attack</h2>
+            <p>
+                Pieces I lost in early part of game (Moves 1-40): Pawn, Bishop, Queen (sacrifice exchange)
+                <br />
+                &#x9;&#x9;&#x9;Tricks used : Move 5.e5 to threaten the knight
+                <br />
+                &#x9;&#x9;&#x9;Move 9.Be3 to secure the frontier pawns
+                <br />
+                &#x9;&#x9;&#x9;Move 11-14. knight movement
+                <br />
+                &#x9;&#x9;&#x9;Move 15.Rc1 to fool
+                <br />
+                &#x9;&#x9;&#x9;Move 16. Ng6 to move knight deeper into right side territory
+                <br />
+                &#x9;&#x9;&#x9;Move 17. Nxh8 to use knight to capture rook (Great job here)
+                <br />
+                &#x9;&#x9;&#x9;Move 20. Qe2 to defend knight
+                <br />
+            </p>
+            <p>
+                Pieces I lost in middle part of game (Moves 41-80) : Just knight (remarkable !)
+                <br />
+                &#x9;&#x9;&#x9;Tricks used : Moves 41-46 to use sacrifice one knight to capture bishop and use other knight to harass the king,
+                <br />
+                &#x9;&#x9;&#x9;till the knight occupies vantage position in deep territory.
+                <br />
+            </p>
+            <p>
+                Pieces I lost in last part of game : None
+                <br />
+                &#x9;&#x9;&#x9;Mostly the game was turned in my favor in the early part of the game.
+                <br />
+                &#x9;&#x9;&#x9;I move out my knights and queen in beginning of game.
+                <br />
+                &#x9;&#x9;&#x9;Use it to keep opponent engaged in right side till at move #31, where I trade queens.
+            </p>
+            <ct-pgn-viewer>
+                [White &quot;Tauseef&quot;][Black &quot;Dr. Wolf - Advanced&quot;][Date &quot;Fri Dec 22 2023&quot;][Result &quot;1-0&quot;] 1. d4 Nf6 2. Qd3 d5 3. f3 Nc6 4. e4 e6 5. e5 Nd7 6. f4 Qe7 7. c3 a6 8. b4 b5 9. Be3 Ra7 10. Nf3 Rb7 11. Nbd2 Rb6 12. g3 f6 13. Nh4 f5 14. Ndf3 h6 15. Rc1 Nd8 16. Ng6 Qf7 17. Nxh8 Qh5 18. Be2 Be7 19. Bd1 Qh3 20. Qe2 Rb7 21. a4 Qg4 22. axb5 axb5 23. Ra1 c6 24. Ra5 Rc7 25. Bf2 Nb6 26. h3 Qh5 27. h4 Nc4 28. Bb3 Kd7 29. Bxc4 bxc4 30. Kd2 Qg4 31. Nh2 Qxe2+ 32. Kxe2 Nb7 33. Ra8 h5 34. Rb1 Nd8 35. b5 cxb5 36. Rxb5 Bb7 37. Ra7 Bc6 38. Rba5 Rxa7 39. Rxa7+ Bb7 40. Ng6 Ke8 41. Nxe7 Kxe7 42. Nf3 g6 43. Ng5 Kf8 44. Nh7+ Kg8 45. Nf6+ Kh8 46. Ne8 Kg8 47. Nd6 Bc6 48. Re7 Kh8 49. Nc8 Kg8 50. Be3 Kh8 51. Bc1 Kg8 52. Ba3 Kh8 53. Bd6 Ba4 54. Nb6 Bc6 55. Bc7 Nb7 56. Rxe6 Na5 57. Rxg6 Kh7 58. Rf6 Kg8 59. Rxf5 Kh7 60. e6 Kg6 61. Re5 Kg7 62. e7 Kf7 63. f5 Nb3 64. Bd6 Nc1+ 65. Kd2 Nb3+ 66. Kc2 Na1+ 67. Kb1 Nb3 68. Nxd5 Be8 69. Nc7 Nd2+ 70. Kc2 Nf3 71. Re3 Ba4+ 72. Kb2 Nxh4
+                73. gxh4 Be8 74. Nxe8 Kxe8 75. f6 Kf7 76. Re5 Ke8 77. Rxh5 Kf7 78. Ka3 Ke8 79. Kb4 Kf7 80. Kxc4 Ke8 81. Kd5 Kd7 82. c4 Ke8 83. c5 Kf7 84. Rf5 Ke8 85. c6 Kf7 86. h5 Kg8 87. Ke6 Kh8 88. c7 Kg8 89. c8=Q+ Kh7 90. Qc1 Kg8 91. Be5 Kh7 92. Qh1 Kh8 93. d5 Kg8 94. h6 Kh8 95. Kd6 Kg8 96. Kc5 Kf7 97. Kd4 Ke8 98. Ke4 Kf7 99. Bf4 Ke8 100. Bg5 Kf7 101. Kf4 Kg6 102. h7 Kf7 103. d6 Ke8 104. f7+ Kd7 105. Rf6 Kc8 106. h8=Q+ Kd7 107. Q1h6 Kc6 108. d7+ Kb5 109. d8=Q Kb4 110. e8=Q Ka3 111. f8=Q+ Ka2 112. Qa8+ Kb1 113. Qhh1+ Kc2 114. Qeb8 Kd3 115. Kg4 Kc2 116. Ra6 Kd3 117. Qbb1+ Kc4 118. Qhf1# 1-0
+            </ct-pgn-viewer>
+            <p>Some snapshots of how it looked while playing on android app Dr. Wolf</p>
+        </div>
+        <!-- container-fluid for h1,p,h2 for strategic wins-->
+        <div class="carousel slide mb-6" id="myCarousel" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button class="active" type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="5" aria-label="Slide 6"></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="6" aria-label="Slide 7"></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="7" aria-label="Slide 8"></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="8" aria-label="Slide 9"></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="9" aria-label="Slide 10"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveaspectratio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
+                    <div class="container">
+                        <div class="carousel-caption text-start">
+                            <img src="assets/oct16_patientWinAgainstAdvanced/Screenshot_20231016-204214.png" width="190" height="390" />
+                            <h1>Move #33</h1>
+                            <p class="opacity-75">All my pawns are secured. King is safely amongst pawns. My queen is threatening opponent.</p>
+                            <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveaspectratio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <img src="assets/oct16_patientWinAgainstAdvanced/Screenshot_20231016-204312.png" width="190" height="390" />
+                            <h1>Move #34.c3</h1>
+                            <p>I move pawn to threaten black queen.</p>
+                            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveaspectratio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <img src="assets/oct16_patientWinAgainstAdvanced/Screenshot_20231016-204946.png" width="190" height="390" />
+                            <h1>Move #49.Rc8</h1>
+                            <p>Queens are traded and gone. Meanwhile I advance my pawns and use my two rooks working together to invade</p>
+                            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveaspectratio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <img src="assets/oct16_patientWinAgainstAdvanced/Screenshot_20231016-205146.png" width="190" height="390" />
+                            <h1>Moves #51-52</h1>
+                            <p>The Aha moment : Mistake by black rook allows me to move my rook to opponent home and acquire advantage position to attack its pawns on right</p>
+                            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveaspectratio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <img src="assets/dec22_2023_greatWin_fiveQueens/Screenshot_20231016-205233.png" width="190" height="390" />
+                            <h1>Moves #53-56</h1>
+                            <p>Action time : Rook took out the two pawns. Goed gedaan !</p>
+                            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveaspectratio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <img src="assets/dec22_2023_greatWin_fiveQueens/Screenshot_20231016-205554.png" width="190" height="390" />
+                            <h1>Moves #57-63</h1>
+                            <p>High strategy : Lets not disturb the rook on left. Instead shore up the pawns on right defending each other and also the rook.</p>
+                            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveaspectratio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <img src="assets/dec22_2023_greatWin_fiveQueens/Screenshot_20231016-205715.png" width="190" height="390" />
+                            <h1>Moves #66</h1>
+                            <p>High strategy : Move pawn on extreme right so that I can promote the pawn on its left. But black used knight to block.</p>
+                            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveaspectratio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <img src="assets/dec22_2023_greatWin_fiveQueens/Screenshot_20231016-205905.png" width="190" height="390" />
+                            <h1>Moves #67-68-69</h1>
+                            <p>High strategy : Trick is to first threaten the black king to push it against threatening my main pawn to promote. Then make a greate sacrifice of the promoted queen to take out the rook who eliminated my promoted queen. Now the rest of the game is almost mine. Two tricks : right placement of left rook to threaten king and sacrifice of promoted queen.</p>
+                            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveaspectratio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <img src="assets/dec22_2023_greatWin_fiveQueens/Screenshot_20231016-205956.png" width="190" height="390" />
+                            <h1>Moves #70-71-72</h1>
+                            <p>Win : Promote the pawn and game is mine. Black king has nowhere to hide !</p>
+                            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveaspectratio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <img src="assets/dec22_2023_greatWin_fiveQueens/Screenshot_20231222-172501.png" width="190" height="390" />
+                            <h1>Statistics from Dr. Wolf</h1>
+                            <p>I still made 5 blunders in this game.</p>
+                            <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <!-- carousel example indicators-->
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+<!-- Core theme JS-->
+<script src="js/scripts.js"></script>
