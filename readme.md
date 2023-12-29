@@ -29,3 +29,10 @@ You must have npm installed in order to use this build environment.
 
 ### PUG converter
 https://html-to-pug.com/
+
+### Navigating different games
+https://curioustauseef.github.io/dr_wolff_chess/dist/strategicWins.html
+
+
+### Checking deployments via GitHub Actions
+https://github.com/curiousTauseef/dr_wolff_chess/deployments
